@@ -6,3 +6,4 @@ Plan It Right is an AI Diet Planner App.
 
 - React Native
 - Convex Database
+- Firebase
