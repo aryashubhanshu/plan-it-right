@@ -17,7 +17,14 @@ export default function Button({ title, onPress }: ButtonProps) {
       }}
       onPress={onPress}
     >
-      <Text style={{ fontSize: 20, textAlign: "center", color: Colors.WHITE }}>
+      <Text
+        style={{
+          fontSize: 20,
+          fontWeight: "600",
+          textAlign: "center",
+          color: Colors.WHITE,
+        }}
+      >
         {title}
       </Text>
     </Pressable>
