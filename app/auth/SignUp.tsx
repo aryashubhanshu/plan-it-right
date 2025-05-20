@@ -1,13 +1,22 @@
+import { useMutation } from "convex/react";
 import { Link } from "expo-router";
-import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useContext, useState } from "react";
 import { Alert, Image, Text, View } from "react-native";
 import Button from "./../../components/shared/Button";
 import Input from "./../../components/shared/Input";
+import { UserContext } from "./../../context/UserContext";
+import { api } from "./../../convex/_generated/api";
+import { auth } from "./../../services/FirebaseConfig";
 
 export default function SignUp() {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const createNewUser = useMutation(api.Users.CreateNewUser);
+
+  const { user, setUser } = useContext(UserContext);
 
   const onSignUp = () => {
     console.log("Sign up called");
@@ -16,6 +25,25 @@ export default function SignUp() {
       Alert.alert("Please fill all the fields");
       return;
     }
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(async (userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log(user);
+
+        const result = await createNewUser({
+          name,
+          email,
+        });
+
+        setUser(result);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
   };
 
   return (

@@ -1,12 +1,20 @@
+import { useConvex } from "convex/react";
 import { Link } from "expo-router";
-import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useContext, useState } from "react";
 import { Alert, Image, Text, View } from "react-native";
 import Button from "./../../components/shared/Button";
 import Input from "./../../components/shared/Input";
+import { UserContext } from "./../../context/UserContext";
+import { api } from "./../../convex/_generated/api";
+import { auth } from "./../../services/FirebaseConfig";
 
 export default function SignIn() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const convex = useConvex();
+  const { user, setUser } = useContext(UserContext);
 
   const onSignIn = () => {
     console.log("Sign in called");
@@ -15,6 +23,26 @@ export default function SignIn() {
       Alert.alert("Please fill all the fields");
       return;
     }
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then(async (userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        const userData = await convex.query(api.Users.GetUser, {
+          email,
+        });
+        console.log(userData);
+        setUser(userData);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        Alert.alert(
+          "Incorrect email or password",
+          "Please enter correct credentials"
+        );
+      });
   };
 
   return (
