@@ -8,7 +8,14 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!user?.weight && !user?.height && !user?.gender && !user?.goal) {
+    if (
+      !user?.weight &&
+      !user?.height &&
+      !user?.gender &&
+      !user?.goal &&
+      !user?.calories &&
+      !user?.proteins
+    ) {
       router.replace("/preference");
     }
   }, [user, router]);

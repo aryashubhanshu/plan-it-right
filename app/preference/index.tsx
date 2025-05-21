@@ -21,7 +21,9 @@ import Button from "./../../components/shared/Button";
 import Input from "./../../components/shared/Input";
 import { UserContext } from "./../../context/UserContext";
 import { api } from "./../../convex/_generated/api";
+import { calculateCaloriesWithAI } from "./../../services/AiModel";
 import Colors from "./../../shared/Colors";
+import Prompts from "./../../shared/Prompts";
 
 export default function Preference() {
   const [weight, setWeight] = useState<string>();
@@ -43,6 +45,7 @@ export default function Preference() {
       return;
     }
 
+    // User Preferences
     const data = {
       uid: user?._id,
       weight,
@@ -51,9 +54,17 @@ export default function Preference() {
       goal,
     };
 
-    const result = await UpdateUserPref({ ...data });
+    // Calculate calories using AI
+    const prompt = JSON.stringify(data) + " " + Prompts.CALORIES_PROMPT;
+    const AIResult = await calculateCaloriesWithAI(prompt);
+    const AIResponse = AIResult.choices[0].message.content;
+    const JSONContent = JSON.parse(
+      AIResponse?.replace("```json", "").replace("```", "")!
+    );
 
-    setUser((prev: any) => ({ ...prev, data }));
+    const result = await UpdateUserPref({ ...data, ...JSONContent });
+
+    setUser((prev: any) => ({ ...prev, data, ...JSONContent }));
 
     router.replace("/(tabs)/Home");
   };
