@@ -1,6 +1,6 @@
 import { useRouter } from "expo-router";
 import React, { useContext, useEffect } from "react";
-import { View } from "react-native";
+import { Platform, View } from "react-native";
 import GenerateReceipeCard from "./../../components/GenerateReceipeCard";
 import HomeHeader from "./../../components/HomeHeader";
 import TodayMealPlan from "./../../components/TodayMealPlan";
@@ -25,7 +25,7 @@ export default function Home() {
   }, [user, router]);
 
   return (
-    <View style={{ padding: 20 }}>
+    <View style={{ paddingTop: Platform.OS === "ios" ? 72 : 0, padding: 20 }}>
       <HomeHeader />
       <TodayProgress />
       <GenerateReceipeCard />

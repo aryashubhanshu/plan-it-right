@@ -1,9 +1,12 @@
 import { ArrowRight02FreeIcons } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react-native";
+import { useRouter } from "expo-router";
 import { Pressable, Text, View } from "react-native";
 import Colors from "./../shared/Colors";
 
 export default function GenerateReceipeCard() {
+  const router = useRouter();
+
   return (
     <View
       style={{
@@ -35,6 +38,7 @@ export default function GenerateReceipeCard() {
           borderRadius: 12,
           width: 180,
         }}
+        onPress={() => router.push("/generate-ai-recipe")}
       >
         <Text
           style={{ fontSize: 16, color: Colors.WHITE, fontWeight: "medium" }}

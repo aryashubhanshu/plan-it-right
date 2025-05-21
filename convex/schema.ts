@@ -15,4 +15,10 @@ export default defineSchema({
     calories: v.optional(v.number()),
     proteins: v.optional(v.number()),
   }),
+  Recipes: defineTable({
+    recipeName: v.any(),
+    jsonData: v.any(),
+    imageUrl: v.optional(v.string()),
+    uid: v.id("Users"),
+  }),
 });

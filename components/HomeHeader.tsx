@@ -15,7 +15,6 @@ export default function HomeHeader() {
         flexDirection: "row",
         alignItems: "center",
         gap: 10,
-        paddingTop: 40,
       }}
     >
       <HugeiconsIcon
