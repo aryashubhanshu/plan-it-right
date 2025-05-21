@@ -1,6 +1,10 @@
 import { useRouter } from "expo-router";
 import React, { useContext, useEffect } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
+import GenerateReceipeCard from "./../../components/GenerateReceipeCard";
+import HomeHeader from "./../../components/HomeHeader";
+import TodayMealPlan from "./../../components/TodayMealPlan";
+import TodayProgress from "./../../components/TodayProgress";
 import { UserContext } from "./../../context/UserContext";
 
 export default function Home() {
@@ -21,8 +25,11 @@ export default function Home() {
   }, [user, router]);
 
   return (
-    <View>
-      <Text>Home</Text>
+    <View style={{ padding: 20 }}>
+      <HomeHeader />
+      <TodayProgress />
+      <GenerateReceipeCard />
+      <TodayMealPlan />
     </View>
   );
 }

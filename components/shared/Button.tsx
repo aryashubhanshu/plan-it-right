@@ -10,7 +10,7 @@ export default function Button({ title, onPress }: ButtonProps) {
   return (
     <Pressable
       style={{
-        padding: 20,
+        padding: 16,
         backgroundColor: Colors.PRIMARY,
         width: "100%",
         borderRadius: 12,
