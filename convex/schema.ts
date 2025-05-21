@@ -8,5 +8,9 @@ export default defineSchema({
     picture: v.optional(v.string()),
     subscriptionId: v.optional(v.string()),
     credits: v.number(),
+    height: v.optional(v.string()),
+    weight: v.optional(v.string()),
+    gender: v.optional(v.string()),
+    goal: v.optional(v.string()),
   }),
 });
