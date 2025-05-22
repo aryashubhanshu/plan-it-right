@@ -86,7 +86,7 @@ export default function TodayProgress() {
         <View
           style={{
             backgroundColor: Colors.WHITE,
-            width: "70%",
+            width: `${(caloriesConsumed / user?.calories) * 100}%`,
             height: 12,
             borderRadius: 99,
           }}
