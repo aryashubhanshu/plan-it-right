@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, Platform, Text, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import DateSelectionCard from "./../../components/DateSelectionCard";
 import GenerateReceipeCard from "./../../components/GenerateReceipeCard";
 import TodayMealPlan from "./../../components/TodayMealPlan";
@@ -13,9 +13,7 @@ export default function Progress() {
       data={[]}
       renderItem={() => null}
       ListHeaderComponent={
-        <View
-          style={{ paddingTop: Platform.OS === "ios" ? 72 : 0, padding: 20 }}
-        >
+        <View style={{ paddingTop: 72, padding: 20 }}>
           <Text style={{ fontSize: 24, fontWeight: "bold" }}>
             Your Progress 📈
           </Text>

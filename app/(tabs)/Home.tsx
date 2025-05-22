@@ -1,7 +1,7 @@
 import { useRouter } from "expo-router";
 import moment from "moment";
 import React, { useContext, useEffect } from "react";
-import { Platform, View } from "react-native";
+import { View } from "react-native";
 import { FlatList } from "react-native-actions-sheet";
 import GenerateReceipeCard from "./../../components/GenerateReceipeCard";
 import HomeHeader from "./../../components/HomeHeader";
@@ -26,14 +26,18 @@ export default function Home() {
     }
   }, [user, router]);
 
+  useEffect(() => {
+    if (!user?.email) {
+      router.replace("/");
+    }
+  }, [user, router]);
+
   return (
     <FlatList
       data={[]}
       renderItem={() => null}
       ListHeaderComponent={
-        <View
-          style={{ paddingTop: Platform.OS === "ios" ? 72 : 0, padding: 20 }}
-        >
+        <View style={{ paddingTop: 72, padding: 20 }}>
           <HomeHeader />
           <TodayProgress />
           <GenerateReceipeCard />

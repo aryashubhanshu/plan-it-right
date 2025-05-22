@@ -9,7 +9,7 @@ import { HugeiconsIcon } from "@hugeicons/react-native";
 import { useRouter } from "expo-router";
 import { signOut } from "firebase/auth";
 import { useContext } from "react";
-import { FlatList, Platform, Pressable, Text, View } from "react-native";
+import { FlatList, Pressable, Text, View } from "react-native";
 import { UserContext } from "./../../context/UserContext";
 import { auth } from "./../../services/FirebaseConfig";
 import Colors from "./../../shared/Colors";
@@ -57,9 +57,7 @@ export default function Profile() {
       data={[]}
       renderItem={() => null}
       ListHeaderComponent={
-        <View
-          style={{ paddingTop: Platform.OS === "ios" ? 72 : 0, padding: 20 }}
-        >
+        <View style={{ paddingTop: 72, padding: 20 }}>
           <Text style={{ fontSize: 24, fontWeight: "bold" }}>Your Profile</Text>
 
           <View

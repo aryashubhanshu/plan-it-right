@@ -1,7 +1,7 @@
 import { useQuery } from "convex/react";
 import { useLocalSearchParams } from "expo-router/build/hooks";
 import { useContext, useRef } from "react";
-import { FlatList, Platform, Text, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
 import { api } from "../../convex/_generated/api";
 import { Id } from "../../convex/_generated/dataModel";
@@ -35,9 +35,7 @@ export default function RecipeDetail() {
       data={[]}
       renderItem={() => null}
       ListHeaderComponent={
-        <View
-          style={{ paddingTop: Platform.OS === "ios" ? 72 : 0, padding: 20 }}
-        >
+        <View style={{ paddingTop: 72, padding: 20 }}>
           {/* Recipe Intro */}
           <RecipeIntro recipeDetail={recipeDetail} />
           {/* Recipe Ingredient */}

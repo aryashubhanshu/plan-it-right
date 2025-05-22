@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   Alert,
   Keyboard,
-  Platform,
   StyleSheet,
   Text,
   TextInput,
@@ -47,7 +46,7 @@ export default function GenerateAIRecipe() {
   };
 
   return (
-    <View style={{ paddingTop: Platform.OS === "ios" ? 72 : 0, padding: 20 }}>
+    <View style={{ paddingTop: 72, padding: 20 }}>
       <Text style={{ fontSize: 24, fontWeight: "bold" }}>
         AI Recipe Generator
       </Text>
