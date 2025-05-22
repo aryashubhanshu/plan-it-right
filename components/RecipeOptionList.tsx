@@ -2,15 +2,15 @@ import { useMutation } from "convex/react";
 import { useRouter } from "expo-router";
 import React, { useContext, useState } from "react";
 import { Pressable, Text, View } from "react-native";
-import { UserContext } from "./../context/UserContext";
-import { api } from "./../convex/_generated/api";
-import { generateRecipeWithAI } from "./../services/AiModel";
-import Colors from "./../shared/Colors";
-import Prompts from "./../shared/Prompts";
+import { UserContext } from "../context/UserContext";
+import { api } from "../convex/_generated/api";
+import { generateRecipeWithAI } from "../services/AiModel";
+import Colors from "../shared/Colors";
+import Prompts from "../shared/Prompts";
 import LoadingDialog from "./shared/LoadingDialog";
 
 export default function RecipeOptionList({ options }: any) {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const { user } = useContext(UserContext);
@@ -24,9 +24,8 @@ export default function RecipeOptionList({ options }: any) {
     try {
       const result = await generateRecipeWithAI(prompt);
       const aiResponse = result.choices[0].message;
-      const extractJSON = aiResponse
-        .content!.replace("```json", "")
-        .replace("```", "");
+      const extractJSON =
+        aiResponse?.content?.replace("```json", "").replace("```", "") ?? "";
       const JSONContent = JSON.parse(extractJSON);
 
       // Generate Recipe Image
@@ -42,10 +41,15 @@ export default function RecipeOptionList({ options }: any) {
         uid: user?._id,
       });
 
+      setLoading(false);
+
       // Redirect to Recipe Details Screen
+      router.push({
+        pathname: "/recipe-detail",
+        params: { recipeId: saveRecipeResult },
+      });
     } catch (error) {
       console.log(error);
-    } finally {
       setLoading(false);
     }
   };

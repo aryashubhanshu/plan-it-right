@@ -1,9 +1,9 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Platform, Text, View } from "react-native";
 
 export default function Profile() {
   return (
-    <View>
+    <View style={{ paddingTop: Platform.OS === "ios" ? 72 : 0, padding: 20 }}>
       <Text>Profile</Text>
     </View>
   );

@@ -14,5 +14,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "convex/schema.jsx"  ]
+, "convex/schema.jsx", "app/recipe-detail/index.tsx", "components/RecipeIntro.tsx", "components/RecipeOptionList.tsx"  ]
 }
