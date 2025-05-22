@@ -41,7 +41,7 @@ export default function TodayMealPlan({ date }: { date: string }) {
     >
       <Text style={{ fontSize: 20, fontWeight: "bold" }}>Meal Plan</Text>
 
-      {!mealPlan ? (
+      {mealPlan.length === 0 ? (
         <View
           style={{
             display: "flex",

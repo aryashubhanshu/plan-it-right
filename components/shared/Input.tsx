@@ -1,4 +1,5 @@
 import { Text, TextInput, View } from "react-native";
+import Colors from "./../../shared/Colors";
 
 interface InputProps {
   placeholder: string;
@@ -23,6 +24,7 @@ export default function Input({
       <TextInput
         onChangeText={(value) => onChangeText && onChangeText(value)}
         placeholder={placeholder}
+        placeholderTextColor={Colors.GRAY}
         secureTextEntry={password}
         style={{
           padding: 16,

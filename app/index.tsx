@@ -28,7 +28,7 @@ export default function Index() {
     });
 
     return () => unsubscribe();
-  }, [convex, router, setUser]);
+  }, [router]);
 
   return (
     <View
