@@ -12,7 +12,7 @@ import Colors from "./../shared/Colors";
 import MealPlanCard from "./MealPlanCard";
 import Button from "./shared/Button";
 
-export default function TodayMealPlan() {
+export default function TodayMealPlan({ date }: { date: string }) {
   const [mealPlan, setMealPlan] = useState<any>([]);
 
   const { user } = useContext(UserContext);
@@ -23,7 +23,7 @@ export default function TodayMealPlan() {
 
   const getTodayMealPlan = async () => {
     const result = await convex.query(api.MealPlan.GetTodayMealPlan, {
-      date: moment().format("DD/MM/YYYY"),
+      date: date ?? moment().format("DD/MM/YYYY"),
       uid: user?._id,
     });
     setMealPlan(result);
@@ -31,7 +31,7 @@ export default function TodayMealPlan() {
 
   useEffect(() => {
     user && getTodayMealPlan();
-  }, [user, refreshData]);
+  }, [user, refreshData, date]);
 
   return (
     <View
@@ -39,9 +39,7 @@ export default function TodayMealPlan() {
         marginTop: 16,
       }}
     >
-      <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-        Today&apos;s Meal Plan
-      </Text>
+      <Text style={{ fontSize: 20, fontWeight: "bold" }}>Meal Plan</Text>
 
       {!mealPlan ? (
         <View
