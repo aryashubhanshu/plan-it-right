@@ -3,7 +3,6 @@ import Colors from "./../shared/Colors";
 
 export default function RecipeIngredient({ recipeDetail }: any) {
   const ingredients = recipeDetail?.jsonData?.ingredients;
-  console.log(ingredients);
 
   return (
     <View style={{ marginTop: 16 }}>
@@ -27,9 +26,6 @@ export default function RecipeIngredient({ recipeDetail }: any) {
             style={{
               marginTop: 8,
               display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
             }}
           >
             <View
@@ -55,7 +51,14 @@ export default function RecipeIngredient({ recipeDetail }: any) {
                 {item?.ingredient}
               </Text>
             </View>
-            <Text style={{ color: Colors.GRAY, fontSize: 16 }}>
+            <Text
+              style={{
+                color: Colors.GRAY,
+                fontSize: 16,
+                marginLeft: 56,
+                marginTop: -4,
+              }}
+            >
               {item?.quantity}
             </Text>
           </View>
