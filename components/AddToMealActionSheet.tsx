@@ -9,6 +9,7 @@ import moment from "moment";
 import { useContext, useEffect, useState } from "react";
 import { Alert, Pressable, Text, View } from "react-native";
 import { FlatList } from "react-native-actions-sheet";
+import { RefreshDataContext } from "./../context/RefreshDataContext";
 import { UserContext } from "./../context/UserContext";
 import { api } from "./../convex/_generated/api";
 import Colors from "./../shared/Colors";
@@ -37,6 +38,7 @@ export default function AddToMealActionSheet({
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [selectedMeal, setSelectedMeal] = useState<string>("");
 
+  const { setRefreshData } = useContext(RefreshDataContext);
   const { user } = useContext(UserContext);
   const CreateMealPlan = useMutation(api.MealPlan.CreateMealPlan);
 
@@ -56,13 +58,14 @@ export default function AddToMealActionSheet({
       return;
     }
 
-    const result = await CreateMealPlan({
+    await CreateMealPlan({
       date: selectedDate,
       mealType: selectedMeal,
       uid: user?._id,
       recipeId: recipeDetail?._id,
     });
 
+    setRefreshData(Date.now());
     hideActionSheet();
   };
 

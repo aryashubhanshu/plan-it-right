@@ -1,6 +1,7 @@
 import { CalendarAdd01FreeIcons } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react-native";
 import { useConvex } from "convex/react";
+import { useRouter } from "expo-router";
 import moment from "moment";
 import React, { useContext, useEffect, useState } from "react";
 import { FlatList, Text, View } from "react-native";
@@ -16,6 +17,7 @@ export default function TodayMealPlan() {
 
   const { user } = useContext(UserContext);
   const { refreshData } = useContext(RefreshDataContext);
+  const router = useRouter();
 
   const convex = useConvex();
 
@@ -68,7 +70,10 @@ export default function TodayMealPlan() {
             You don&apos;t have any meal plan for today!
           </Text>
 
-          <Button title="Create New Meal Plan" onPress={() => {}} />
+          <Button
+            title="Create New Meal Plan"
+            onPress={() => router.push("/(tabs)/Meals")}
+          />
         </View>
       ) : (
         <View>

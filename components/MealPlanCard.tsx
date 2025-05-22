@@ -51,7 +51,7 @@ export default function MealPlanCard({ mealPlanInfo }: any) {
           flex: 1,
         }}
       >
-        <View>
+        <View style={{ width: "85%" }}>
           <Text style={styles.mealTypeText}>
             {mealPlanInfo?.mealPlan?.mealType}
           </Text>

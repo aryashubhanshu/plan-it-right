@@ -1,6 +1,6 @@
 import { useQuery } from "convex/react";
 import { useLocalSearchParams } from "expo-router/build/hooks";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { FlatList, Platform, Text, View } from "react-native";
 import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
 import { api } from "../../convex/_generated/api";
@@ -10,10 +10,13 @@ import RecipeIngredient from "./../../components/RecipeIngredient";
 import RecipeIntro from "./../../components/RecipeIntro";
 import RecipeSteps from "./../../components/RecipeSteps";
 import Button from "./../../components/shared/Button";
+import { RefreshDataContext } from "./../../context/RefreshDataContext";
 
 export default function RecipeDetail() {
   const { recipeId } = useLocalSearchParams();
   const actionSheetRef = useRef<ActionSheetRef>(null);
+
+  const { refreshData } = useContext(RefreshDataContext);
 
   const recipeDetail = useQuery(api.Recipes.GetRecipesById, {
     id: recipeId as Id<"Recipes">,

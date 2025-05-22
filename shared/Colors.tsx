@@ -5,4 +5,5 @@ export default {
   GRAY: "#808080",
   BLUE: "#4287F5",
   PINK: "#F542B3",
+  RED: "red",
 };

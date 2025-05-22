@@ -21,7 +21,7 @@ export default function RecipeIntro({ recipeDetail }: any) {
           alignItems: "center",
         }}
       >
-        <Text style={{ fontSize: 24, fontWeight: "bold" }}>
+        <Text style={{ fontSize: 24, fontWeight: "bold", width: "84%" }}>
           {recipeDetail?.recipeName}
         </Text>
         <HugeiconsIcon
@@ -36,7 +36,6 @@ export default function RecipeIntro({ recipeDetail }: any) {
           fontSize: 16,
           marginTop: 8,
           lineHeight: 24,
-          paddingLeft: 32,
         }}
       >
         {recipeJSON?.description}
