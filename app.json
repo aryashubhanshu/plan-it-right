@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Diet_Planner",
+    "name": "Diet Planner",
     "slug": "Diet_Planner",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -16,7 +16,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.aryashubhanshu.Diet_Planner"
     },
     "web": {
       "bundler": "metro",
@@ -37,6 +38,18 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "73aa7a28-d5a7-4b86-94c0-23bb4916a881"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/73aa7a28-d5a7-4b86-94c0-23bb4916a881"
     }
   }
 }
