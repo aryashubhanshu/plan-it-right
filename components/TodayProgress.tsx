@@ -1,11 +1,31 @@
+import { useConvex } from "convex/react";
 import moment from "moment";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Text, View } from "react-native";
+import { RefreshDataContext } from "./../context/RefreshDataContext";
 import { UserContext } from "./../context/UserContext";
+import { api } from "./../convex/_generated/api";
 import Colors from "./../shared/Colors";
 
 export default function TodayProgress() {
+  const [caloriesConsumed, setCaloriesConsumed] = useState<number>(0);
+
+  const { refreshData } = useContext(RefreshDataContext);
   const { user } = useContext(UserContext);
+
+  const convex = useConvex();
+
+  const getTotalCalorieConsumed = async () => {
+    const result = await convex.query(api.MealPlan.GetTotalCalories, {
+      uid: user?._id,
+      date: moment().format("DD/MM/YYYY"),
+    });
+    setCaloriesConsumed(result);
+  };
+
+  useEffect(() => {
+    user && getTotalCalorieConsumed();
+  }, [user, refreshData]);
 
   return (
     <View
@@ -41,7 +61,7 @@ export default function TodayProgress() {
           marginTop: 12,
         }}
       >
-        1500/{user?.calories} kCal
+        {caloriesConsumed} / {user?.calories} kcal
       </Text>
       <Text
         style={{
