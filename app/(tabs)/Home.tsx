@@ -1,4 +1,5 @@
 import { useRouter } from "expo-router";
+import moment from "moment";
 import React, { useContext, useEffect } from "react";
 import { Platform, View } from "react-native";
 import { FlatList } from "react-native-actions-sheet";
@@ -36,7 +37,7 @@ export default function Home() {
           <HomeHeader />
           <TodayProgress />
           <GenerateReceipeCard />
-          <TodayMealPlan />
+          <TodayMealPlan date={moment().format("DD/MM/YYYY")} />
         </View>
       }
     />
